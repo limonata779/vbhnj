@@ -3,11 +3,9 @@ from datetime import datetime, timedelta
 from services.payment_service import PaymentGateway
 from services.library_service import pay_late_fees, refund_late_fee_payment, add_book_to_catalog, return_book_by_patron
 # pay_late_fees required tests
-
 def test_successful_payment(mocker):
     # Test successful payment
     def fake_fee_calc(patron_id, book_id):
-
         # stub for this scenario
         assert patron_id == "121212"
         assert book_id == 99
@@ -29,7 +27,7 @@ def test_successful_payment(mocker):
     assert tx_id == "OX_422"
     assert msg == "Payment successful! All good"
 
-    # Stubs and mock verified using the required assert_called* helpers
+    # Stubs and mock verified
     fee_calc_stub.assert_called_once_with("121212", 99)
     book_lookup_stub.assert_called_once_with(99)
     gateway_double.process_payment.assert_called_once_with(
